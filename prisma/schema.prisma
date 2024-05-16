@@ -1,0 +1,128 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  NOT_VERIFIED
+  ADMIN
+  TUTOR
+  BASIC
+}
+
+model User {
+  id String @id @unique
+
+  email         String
+  name          String
+  bio           String         @default("")
+  profileImage  String
+  role          UserRole       @default(NOT_VERIFIED)
+  courses       Course[]
+  userCourses   UserCourse[]
+  notifications Notification[]
+}
+
+model UserCourse {
+  id       String @id @unique @default(cuid())
+  userID   String
+  courseID String
+  user     User   @relation(fields: [userID], references: [id])
+  course   Course @relation(fields: [courseID], references: [id])
+  // status if admin approved or teacher approved
+  // that this is real user and he is taking this course
+  // here can be blocked status as well if user is not paying
+}
+
+model Notification {
+  id        String   @id @unique @default(cuid())
+  title     String
+  message   String
+  createdAt DateTime
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+  // seen or not xD 
+  // and there can be different type of notifications so we can have a type 
+  // field and on frontend have differen designs based on that
+}
+
+enum CourseDifficulty {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+}
+
+enum CourseStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+model Course {
+  id                     String               @id @unique @default(cuid())
+  title                  String
+  heading                String
+  description            String
+  imgUrl                 String
+  priceInMonth           Int
+  ageFrom                Int
+  maxStudents            Int
+  durationInWeeks        Int
+  durationInHoursPerWeek Int
+  status                 CourseStatus
+  registrationDate       DateTime
+  finishDate             DateTime
+  difficulty             CourseDifficulty
+  syllabusId             String
+  syllabus               Syllabus             @relation(fields: [syllabusId], references: [id]) // why multiple syllabus?
+  authors                User[]
+  whatYouWillLearn       WhatYouWillLearn[]
+  whoIsThisCourseFor     WhoIsThisCourseFor[]
+  whatYouNeed            WhatYouNeed[]
+  userCourses            UserCourse[]
+}
+
+model WhatYouWillLearn {
+  id      String   @id @unique @default(cuid())
+  value   String   @unique
+  courses Course[]
+}
+
+model WhoIsThisCourseFor {
+  id      String   @id @unique @default(cuid())
+  value   String   @unique
+  courses Course[]
+}
+
+model WhatYouNeed {
+  id      String   @id @unique @default(cuid())
+  value   String   @unique
+  courses Course[]
+}
+
+model Syllabus {
+  id       String            @id @unique @default(cuid())
+  sections SyllabusSection[]
+  Course   Course[]
+}
+
+model SyllabusSection {
+  id         String                   @id @unique @default(cuid())
+  value      String
+  order      Int
+  syllabusID String
+  syllabus   Syllabus                 @relation(fields: [syllabusID], references: [id])
+  elements   SyllabusSectionElement[]
+}
+
+model SyllabusSectionElement {
+  id                String          @id @unique @default(cuid())
+  value             String
+  order             Int
+  syllabusSection   SyllabusSection @relation(fields: [syllabusSectionID], references: [id])
+  syllabusSectionID String
+}

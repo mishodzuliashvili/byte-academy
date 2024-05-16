@@ -1,0 +1,109 @@
+@import url("//cdn.web-fonts.ge/fonts/bpg-banner/css/bpg-banner.min.css");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* --mantine-scale: 1; */
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 152 95% 39%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary:152 95% 90%;
+    --secondary-foreground: 152 95% 39%;
+
+    --ternary: 152 95% 70%
+    --ternary-foreground: 152 95% 39%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.7rem;
+
+    --font-size-sm: clamp(0.8rem, 0.17cqi + 0.76rem, 0.89rem);
+    --font-size-base: clamp(1rem, 0.34cqi + 0.91rem, 1.19rem);
+    --font-size-lg: clamp(1.25rem, 0.61cqi + 1.1rem, 1.58rem);
+    --font-size-xl: clamp(1.56rem, 1cqi + 1.31rem, 2.11rem);
+    --font-size-2xl: clamp(1.95rem, 1.56cqi + 1.56rem, 2.81rem);
+    --font-size-3xl: clamp(2.44rem, 2.38cqi + 1.85rem, 3.75rem);
+    --font-size-4xl: clamp(3.05rem, 3.54cqi + 2.17rem, 5rem);
+    --font-size-5xl: clamp(3.81rem, 5.18cqi + 2.52rem, 6.66rem);
+    --font-size-6xl: clamp(4.77rem, 7.48cqi + 2.9rem, 8.88rem);
+  }
+
+  /* .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+194
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  } */
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    font-family: "BPG Banner", sans-serif;
+
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "BPG Banner", sans-serif;
+    /* color: #1D2026; */
+    /* background-color: #f2f2f2; */
+  }
+}
+
+
+.shadow-wow{
+  /* border: 3px solid rgba(218, 218, 218, 0.425); */
+  box-shadow: 5px 5px rgba(218, 218, 218, 0.425);
+}
+
+.stop-scrolling {
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+}
