@@ -8,6 +8,8 @@ import prisma from "@/lib/prisma";
 import TLink from "./t-link";
 type NavbarProps = {};
 
+export const dynamic = "force-dynamic";
+
 export default async function Navbar({}: NavbarProps) {
   const { isAuthenticated, getUser } = getKindeServerSession();
   const user = await getUser();

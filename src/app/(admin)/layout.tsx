@@ -6,6 +6,8 @@ type layoutProps = {
   children: React.ReactNode;
 };
 
+export const dynamic = "force-dynamic";
+
 export default async function layout({ children }: layoutProps) {
   const { getUser } = getKindeServerSession();
   const user = await getUser();
