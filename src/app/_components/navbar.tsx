@@ -11,7 +11,6 @@ type NavbarProps = {};
 export default async function Navbar({}: NavbarProps) {
   const { isAuthenticated, getUser } = getKindeServerSession();
   const user = await getUser();
-
   let dbUser = null;
 
   if (user) {
@@ -21,6 +20,8 @@ export default async function Navbar({}: NavbarProps) {
       },
     });
   }
+
+  const lastCourse = await prisma.course.findFirst({});
 
   return (
     <div className="w-full fixed top-0 left-0 px-4 bg-background z-[100]">
@@ -35,7 +36,8 @@ export default async function Navbar({}: NavbarProps) {
           მთავარი
         </Link> */}
           <TLink
-            href="/courses/clvr8uepp00006rk0f5eupeaj"
+            // href="/courses/clvr8uepp00006rk0f5eupeaj"
+            href={`/courses/${lastCourse?.id}`}
             className="hover:text-primary duration-300"
           >
             საბაზისო კურსი
